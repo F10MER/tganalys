@@ -19,8 +19,14 @@ OPENROUTER_MODEL = os.getenv("OPENROUTER_MODEL", "anthropic/claude-3.5-sonnet")
 # AgentRouter Configuration
 AGENTROUTER_API_KEY = os.getenv("AGENTROUTER_API_KEY")
 
-# Whisper API URL
+# Transcription Provider Configuration
+TRANSCRIPTION_PROVIDER = os.getenv("TRANSCRIPTION_PROVIDER", "whisper_local")  # whisper_local, openai, assemblyai
+
+# Whisper API URL (for local Whisper)
 WHISPER_API_URL = os.getenv("WHISPER_API_URL", "http://whisper:9000")
+
+# AssemblyAI API Key
+ASSEMBLYAI_API_KEY = os.getenv("ASSEMBLYAI_API_KEY")
 
 # Database URL
 DATABASE_URL = os.getenv("DATABASE_URL")

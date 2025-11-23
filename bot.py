@@ -19,7 +19,7 @@ from aiogram.fsm.storage.memory import MemoryStorage
 
 from config import BOT_TOKEN
 from database import db
-from whisper_client import transcribe_audio
+from transcription_client import TranscriptionClient
 from ai_client import analyze_messages, custom_analysis
 
 # Настройка логирования
@@ -33,6 +33,9 @@ logger = logging.getLogger(__name__)
 bot = Bot(token=BOT_TOKEN)
 storage = MemoryStorage()
 dp = Dispatcher(storage=storage)
+
+# Инициализация клиента транскрибации
+transcription_client = TranscriptionClient()
 
 
 # FSM состояния
@@ -161,7 +164,9 @@ async def handle_voice(message: Message):
         status_msg = await message.answer("🎤 Транскрибирую голосовое сообщение...")
         
         # Транскрибируем
-        transcription = await transcribe_audio(voice_path)
+        with open(voice_path, 'rb') as f:
+            audio_data = f.read()
+        transcription = await transcription_client.transcribe(audio_data, "voice.ogg")
         
         # Удаляем временный файл
         if os.path.exists(voice_path):
@@ -477,7 +482,9 @@ async def handle_business_voice(message: Message):
         logger.info(f"Transcribing business voice message from chat {chat_id}")
         
         # Транскрибируем
-        transcription = await transcribe_audio(voice_path)
+        with open(voice_path, 'rb') as f:
+            audio_data = f.read()
+        transcription = await transcription_client.transcribe(audio_data, "voice.ogg")
         
         # Удаляем временный файл
         if os.path.exists(voice_path):
