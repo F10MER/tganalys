@@ -1,0 +1,43 @@
+================================================
+ВАШИ ПЕРЕМЕННЫЕ ОКРУЖЕНИЯ ДЛЯ EASYPANEL
+================================================
+
+Скопируйте эти переменные в Easypanel при создании сервиса бота:
+
+TELEGRAM_BOT_TOKEN=8217799183:AAEQmVgk6M5Gs0knbRv5KIpwQxMVOWEbi3I
+AI_PROVIDER=openai
+OPENAI_API_KEY=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
+WHISPER_API_URL=http://whisper:9000
+DATABASE_URL=postgresql://telegram_user:possword63!@postgres:5432/telegram_bot
+ADMIN_USER_IDS=326471651
+
+================================================
+АЛЬТЕРНАТИВНЫЕ AI ПРОВАЙДЕРЫ (если захотите переключиться)
+================================================
+
+Для OpenRouter:
+AI_PROVIDER=openrouter
+OPENROUTER_API_KEY=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
+OPENROUTER_MODEL=anthropic/claude-3.5-sonnet
+
+Для AgentRouter:
+AI_PROVIDER=agentrouter
+AGENTROUTER_API_KEY=sk-RU9IQPzk8Tms57Xk6vWr7FLr9R1VWfwzyo1CjPeuOKxMt31B
+
+================================================
+ИНСТРУКЦИЯ ПО РАЗВЕРТЫВАНИЮ
+================================================
+
+1. Откройте Easypanel
+2. Создайте новый проект "telegram-bot"
+3. Добавьте 3 сервиса:
+   - PostgreSQL (имя: postgres)
+   - Docker App: onerahmet/openai-whisper-asr-webservice:latest (имя: whisper)
+   - GitHub App: https://github.com/Huzali63/tg-analys (имя: bot)
+4. В настройках бота добавьте переменные окружения выше
+5. Запустите все сервисы
+6. Проверьте логи бота
+
+Подробная инструкция: EASYPANEL_DEPLOY.md в репозитории
+
+================================================
